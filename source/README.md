@@ -28,7 +28,7 @@ Windows: C:\Users\TU_USUARIO\.insightface\models\buffalo_l\
 
 Necesita internet solo la primera vez. Despues corre 100% local.
 
-Probado en Python 3.13.13
+probado en Python 3.13.13
 
 ```bash
 python ApiReconocimiento.py
@@ -57,7 +57,14 @@ Corre `python ApiReconocimiento.py` al menos una vez para que descargue los mode
 pip install pyinstaller
 pyinstaller ApiReconocimiento.spec
 
-El .exe queda en `dist/ApiReconocimientoInsightFace/ApiReconocimiento.exe`. 
+###nuitka installer
+python -m nuitka ApiReconocimiento.py --standalone --include-package=cv2 --include-package=insightface --include-package=onnxruntime --include-package=fastapi --include-package=uvicorn --include-package=starlette --include-package=pydantic --include-data-files=config.ini=config.ini --output-dir=dist_nuitka --windows-console-mode=attach
+
+python -m nuitka ApiReconocimiento.py --standalone --enable-plugin=numpy --enable-plugin=cv2 --include-package=cv2 --include-package=insightface --include-package=onnxruntime --include-package=fastapi --include-package=uvicorn --include-package=starlette --include-package=pydantic --include-module=PIL._imaging --include-module=PIL.JpegImagePlugin --include-module=PIL.PngImagePlugin --include-module=PIL.Image --include-data-files=config.ini=config.ini --include-data-dir=models=models --output-dir=dist_nuitka --windows-console-mode=attach
+
+python -m nuitka --standalone --enable-plugin=numpy --enable-plugin=cv2 --include-package=insightface --include-package=onnxruntime --include-data-dir=models=./models
+
+El .exe queda en `dist/ApiReconocimiento.exe`. Copia tambien `config.ini` a esa carpeta.
 
 El spec file ya incluye los modelos dentro del .exe, asi que el ejecutable final funciona sin internet.
 
