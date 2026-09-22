@@ -1,0 +1,33 @@
+# ===== Entornos virtuales =====
+apireconocimiento/
+venv/
+.venv/
+env/
+
+# ===== Python =====
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+
+# ===== PyInstaller =====
+build/
+dist/
+*.spec.bak
+
+# ===== Modelos y embeddings (pesados / sensibles) =====
+insightface/
+*.npy
+
+# ===== Datos generados / debug =====
+debug/
+*.log
+ApiReconocimientoInsightFace.log
+
+# ===== Config local =====
+# config.ini
+
+# ===== Sistema operativo =====
+.DS_Store
+Thumbs.db
+desktop.ini
